@@ -5,25 +5,28 @@ const app = require('../lib/app');
 
 describe('app routes', () => {
 
+
   it('creates a studio', () => {
     return request(app)
-      .post('/api/v1/books')
+      .post('/api/v1/studio')
       .send({
-        author: 'Warner Bros.',
+        name: 'Warner Bros.',
         address: {
           city: 'Hollywood',
-          State: 'CA',
-          Country: 'USA'
+          state: 'CA',
+          country: 'USA'
         }
       })
       .then(res => {
         expect(res.body).toEqual({
-          author: 'Warner Bros.',
+          _id: expect.any(String),
+          name: 'Warner Bros.',
           address: {
             city: 'Hollywood',
-            State: 'CA',
-            Country: 'USA'
-          }
+            state: 'CA',
+            country: 'USA'
+          },
+          __v: 0
         });
       });
   });
