@@ -24,11 +24,11 @@ afterAll(() => {
 const prepare = model => JSON.parse(JSON.stringify(model));
 const prepareAll = models => models.map(prepare);
 
-// reading our models directory
-const files = fs.readdirSync('./models');
+// reading our models directory *** READ DIR GOES FROM THE ROOT OF REPO
+const files = fs.readdirSync('./lib/models');
 const getters = files
   // for each file in our models directory import the model
-  .map(file => require(`../models/${file}`))
+  .map(file => require(`../lib/models/${file}`))
   // make sure that what we imported is actually a model
   .filter(Model => Model.prototype instanceof mongoose.Model)
   // for each model create a getModelName function that returns an instance of our model
