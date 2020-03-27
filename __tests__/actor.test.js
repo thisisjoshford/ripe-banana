@@ -40,4 +40,16 @@ describe('app routes', () => {
           }, []));
       });
   });
+
+  it('gets an actor by id', async() => {
+    const actor = await getActor();
+    return request(app)
+      .get(`/api/v1/actor/${actor._id}`)
+      .then(res => {
+        expect(res.body).toEqual({ 
+          _id: actor._id, 
+          name: actor.name 
+        });
+      });
+  });
 });
