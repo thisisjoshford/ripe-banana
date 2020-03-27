@@ -8,17 +8,17 @@ describe('app routes', () => {
 
   it('creates an actor', () => {
     return request(app)
-      .post('/api/v1/actors')
+      .post('/api/v1/actor')
       .send({
         name: 'Mr. Bean',
-        dob: new Date(),
+        dob: '02/19/1982',
         pob: 'Milwaukee, WI'
       })
       .then(res => {
         expect(res.body).toEqual({
           _id: expect.any(String),
           name: 'Mr. Bean',
-          dob: expect.any(Date),
+          dob: expect.any(String),
           pob: 'Milwaukee, WI',
           __v: 0
         });
