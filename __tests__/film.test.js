@@ -9,16 +9,24 @@ describe('app routes', () => {
     return request(app)
       .post('/api/v1/film')
       .send({
-        name: 'Mr. Bean',
-        dob: '02/19/1982',
-        pob: 'Milwaukee, WI'
+        title: 'Weekend at Bernies',
+        studio: 'Warner Bros. Studios',
+        released: 1997,
+        cast: [{
+          role: 'lead actor',
+          actor: 'Andrew McCarthy'
+        }]
       })
       .then(res => {
         expect(res.body).toEqual({
           _id: expect.any(String),
-          name: 'Mr. Bean',
-          dob: expect.any(String),
-          pob: 'Milwaukee, WI',
+          title: 'Weekend at Bernies',
+          studio: 'Warner Bros. Studios',
+          released: 1997,
+          cast: [{
+            role: 'lead actor',
+            actor: 'Andrew McCarthy'
+          }],
           __v: 0
         });
       });
