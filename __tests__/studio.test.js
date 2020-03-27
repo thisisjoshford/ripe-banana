@@ -36,12 +36,12 @@ describe('app routes', () => {
     return request(app)
       .get('/api/v1/studios')
       .then(res => {
-        studios.forEach(studio => {
-          delete studio.__v;
-          delete studio.address;
-        });
-        console.log(studios);
-        expect(res.body).toEqual(studios);
+        const studio = studios.reduce((acc, curr) => {
+          acc.push({ _id:curr._id, name: curr.name });
+          return acc ;
+        }, []);
+        console.log(studio);
+        expect(res.body).toEqual(studio);
       });
   });
 });
