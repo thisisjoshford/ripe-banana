@@ -39,5 +39,5 @@ const getters = files
       [`get${Model.modelName}s`]: query => Model.find(query).then(prepareAll)
     };
   }, {});
-console.log(getters);
+// console.log(getters);
 module.exports = getters;
