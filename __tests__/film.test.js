@@ -66,16 +66,16 @@ describe('app routes', () => {
 
   it('gets a film by id', async() => {
     const film = await getFilm({}, {
+      _id: true,
       title: true,
       released: true,
       studio: true,
       cast: true,
       reviews: true
     });
-    console.log(film);
+    console.log(film._id);
     return request(app)
-      .get(`/api/v1/studios/${film._id}`)
-    
+      .get(`/api/v1/film/${film._id}`)
       .then(res => {
         expect(res.body).toEqual(film);
       });
