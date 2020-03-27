@@ -37,7 +37,7 @@ describe('app routes', () => {
   it('gets all the films', async() => {
     const films = await getFilms();
     const studios = await getStudios({
-      _id: { $in: films.map(film => film.studio)}
+      _id: { $in: films.map(film => film.studio) }
     });
     
     return request(app)
