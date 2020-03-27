@@ -40,6 +40,7 @@ describe('app routes', () => {
           delete studio.__v;
           delete studio.address;
         });
+        console.log(studios);
         expect(res.body).toEqual(studios);
       });
   });
