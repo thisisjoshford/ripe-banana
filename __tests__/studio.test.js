@@ -36,6 +36,10 @@ describe('app routes', () => {
     return request(app)
       .get('/api/v1/studios')
       .then(res => {
+        studios.forEach(studio => {
+          delete studio.__v;
+          delete studio.address;
+        });
         expect(res.body).toEqual(studios);
       });
   });
