@@ -2,7 +2,7 @@ const Studio = require('../lib/models/studio');
 const Film = require('../lib/models/film');
 const Actor = require('../lib/models/actor');
 const chance = require('chance').Chance();
-const moment = require('moment')
+const moment = require('moment');
 
 module.exports = async({ studiosToCreate = 10, actorsToCreate = 40 } = {}) => {
 
