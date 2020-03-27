@@ -37,11 +37,22 @@ describe('app routes', () => {
       .get('/api/v1/studios')
       .then(res => {
         const studio = studios.reduce((acc, curr) => {
-          acc.push({ _id:curr._id, name: curr.name });
-          return acc ;
+          acc.push({ _id: curr._id, name: curr.name });
+          return acc;
         }, []);
-        console.log(studio);
         expect(res.body).toEqual(studio);
+      });
+  });
+
+  it('gets a studio by id', async() => {
+    const studio = await getStudio();
+    return request(app)
+      .get(`/api/v1/studios/${studio._id}`)
+      .then(res => {
+        expect(res.body).toEqual({ 
+          _id: studio._id, 
+          name: studio.name 
+        });
       });
   });
 });
