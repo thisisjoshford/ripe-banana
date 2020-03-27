@@ -36,11 +36,11 @@ describe('app routes', () => {
     return request(app)
       .get('/api/v1/studios')
       .then(res => {
-        const studio = studios.reduce((acc, curr) => {
-          acc.push({ _id: curr._id, name: curr.name });
-          return acc;
-        }, []);
-        expect(res.body).toEqual(studio);
+        expect(res.body).toEqual(
+          studios.reduce((acc, curr) => {
+            acc.push({ _id: curr._id, name: curr.name });
+            return acc;
+          }, []));
       });
   });
 
