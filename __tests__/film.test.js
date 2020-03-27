@@ -63,4 +63,21 @@ describe('app routes', () => {
       });
   });
 
+
+  it('gets a film by id', async() => {
+    const film = await getFilm({}, {
+      title: true,
+      released: true,
+      studio: true,
+      cast: true,
+      reviews: true
+    });
+    console.log(film);
+    return request(app)
+      .get(`/api/v1/studios/${film._id}`)
+    
+      .then(res => {
+        expect(res.body).toEqual(film);
+      });
+  });
 });

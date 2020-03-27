@@ -35,9 +35,19 @@ const getters = files
   .reduce((acc, Model) => {
     return {
       ...acc,
-      [`get${Model.modelName}`]: query => Model.findOne(query).then(prepare),
-      [`get${Model.modelName}s`]: query => Model.find(query).then(prepareAll)
+      [`get${Model.modelName}`]: (query, select) => Model.findOne(query).select(select).then(prepare),
+      [`get${Model.modelName}s`]: (query, select) => Model.find(query).select(select).then(prepareAll)
     };
   }, {});
 // console.log(getters);
 module.exports = getters;
+
+// *** normal
+// const cookies = await getCookies();
+// *** with query
+// const cookies = await getCookies({ name: 'chocolate' });
+// *** with select
+// const cookies = await getCookies({}, { name: true, description: true });
+// *** with query and select
+// const cookies = await getCookies({ name: 'chocolate' }, { name: true, description: true });
+
