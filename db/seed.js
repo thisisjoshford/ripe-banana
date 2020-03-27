@@ -18,7 +18,7 @@ module.exports = async({ studiosToCreate = 10, actorsToCreate = 40 } = {}) => {
   })));
 
   const actor = await Actor.create([...Array(actorsToCreate)].map(() => ({
-    name: `${chance.prefix()}, ${chance.name()}`,
+    name: `${chance.prefix()} ${chance.name()}`,
     dob: moment(
       Math.floor(
         Math.random() * (2020 - 1900) + 1900

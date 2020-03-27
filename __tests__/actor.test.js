@@ -24,4 +24,20 @@ describe('app routes', () => {
         });
       });
   });
+
+  it('gets all the actors', async() => {
+    const actors = await getActors();
+    return request(app)
+      .get('/api/v1/actor')
+      .then(res => {
+        expect(res.body).toEqual(
+          actors.reduce((acc, curr) => {
+            acc.push({ 
+              _id: curr._id, 
+              name: curr.name 
+            });
+            return acc;
+          }, []));
+      });
+  });
 });
