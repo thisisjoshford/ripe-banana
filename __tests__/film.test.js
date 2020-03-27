@@ -43,6 +43,7 @@ describe('app routes', () => {
     return request(app)
       .get('/api/v1/film')
       .then(res => {
+        // console.log(res.body);
         expect(res.body).toEqual(
           films.reduce((acc, curr) => {
             const studio = studios
