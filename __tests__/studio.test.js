@@ -8,7 +8,7 @@ describe('app routes', () => {
 
   it('creates a studio', () => {
     return request(app)
-      .post('/api/v1/studio')
+      .post('/api/v1/studios')
       .send({
         name: 'Warner Bros.',
         address: {
@@ -28,6 +28,15 @@ describe('app routes', () => {
           },
           __v: 0
         });
+      });
+  });
+
+  it('gets all the studios', async() => {
+    const studios = await getStudios();
+    return request(app)
+      .get('/api/v1/studios')
+      .then(res => {
+        expect(res.body).toEqual(studios);
       });
   });
 });
