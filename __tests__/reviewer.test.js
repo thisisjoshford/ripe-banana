@@ -22,4 +22,22 @@ describe('app routes', () => {
         });
       });
   });  
+
+  it('gets a reviewer by id', async() => {
+    const reviewer = await getReviewer({}, {
+      _id: true,
+      name: true,
+      company: true,
+      reviews: true
+    });
+    console.log(reviewer);
+    return request(app)
+      .get(`/api/v1/reviewer/${reviewer._id}`)
+      .then(res => {
+        expect(res.body).toEqual({
+          ...reviewer,
+          __v: 0
+        });
+      });
+  });
 });
