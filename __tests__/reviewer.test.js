@@ -1,4 +1,4 @@
-const { getFilm, getFilms, getStudios } = require('../db/data-helpers');
+const { getReviewer, getReviewers } = require('../db/data-helpers');
 
 const mongoose = require('mongoose');
 const request = require('supertest');
