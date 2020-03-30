@@ -40,4 +40,23 @@ describe('app routes', () => {
         });
       });
   });
+
+  it('updates a reviewer by id', async() => {
+    const reviewer = await getReviewer({}, {
+      _id: true,
+      name: true,
+      company: true,
+      reviews: true
+    });
+
+    return request(app)
+      .patch(`/api/v1/reviewer/${reviewer._id}`)
+      .send({ name: 'Roger Ebert' })
+      .then(res => {
+        expect(res.body).toEqual({
+          ...reviewer,
+          name: 'Roger Ebert' 
+        });
+      });
+  });
 });
