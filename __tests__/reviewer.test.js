@@ -28,7 +28,6 @@ describe('app routes', () => {
       _id: true,
       name: true,
       company: true,
-      reviews: true
     });
     // console.log(reviewer);
     return request(app)
@@ -36,36 +35,22 @@ describe('app routes', () => {
       .then(res => {
         expect(res.body).toEqual({
           ...reviewer,
-          __v: 0
+          Reviews: expect.any(Object),
         });
       });
   });
 
   it('updates a reviewer by id', async() => {
-    const reviewer = await getReviewer({}, {
-      _id: true,
-      name: true,
-      company: true,
-      reviews: true
-    });
+    const reviewer = await getReviewer();
 
     return request(app)
       .patch(`/api/v1/reviewer/${reviewer._id}`)
       .send({ name: 'Roger Ebert' })
       .then(res => {
+        console.log(res.body);
         expect(res.body).toEqual({
           ...reviewer,
-          name: 'Roger Ebert', 
-          reviews: [{
-            _id: expect.any(String),
-            rating: expect.any(Number),
-            review: expect.any(String),
-            film: {
-              _id: expect.any(String),
-              title: expect.any(String)
-            }
-          }],
-          __v: 0
+          name: 'Roger Ebert'
         });
       });
   });
