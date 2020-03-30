@@ -55,7 +55,8 @@ describe('app routes', () => {
       .then(res => {
         expect(res.body).toEqual({
           ...reviewer,
-          name: 'Roger Ebert' 
+          name: 'Roger Ebert', 
+          __v: 0
         });
       });
   });
