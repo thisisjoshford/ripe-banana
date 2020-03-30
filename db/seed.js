@@ -2,7 +2,7 @@ const Studio = require('../lib/models/studio');
 const Film = require('../lib/models/film');
 const Actor = require('../lib/models/actor');
 const Reviewer = require('../lib/models/reviewer');
-const Reviews = require('../lib/models/reviews');
+const Reviews = require('../lib/models/review');
 const chance = require('chance').Chance();
 const moment = require('moment');
 
