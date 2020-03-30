@@ -73,7 +73,7 @@ describe('app routes', () => {
       cast: true,
       reviews: true
     });
-    console.log(film);
+    // console.log(film);
     return request(app)
       .get(`/api/v1/film/${film._id}`)
       .then(res => {

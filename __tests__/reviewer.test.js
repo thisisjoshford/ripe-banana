@@ -30,7 +30,7 @@ describe('app routes', () => {
       company: true,
       reviews: true
     });
-    console.log(reviewer);
+    // console.log(reviewer);
     return request(app)
       .get(`/api/v1/reviewer/${reviewer._id}`)
       .then(res => {
@@ -56,6 +56,15 @@ describe('app routes', () => {
         expect(res.body).toEqual({
           ...reviewer,
           name: 'Roger Ebert', 
+          reviews: [{
+            _id: expect.any(String),
+            rating: expect.any(Number),
+            review: expect.any(String),
+            film: {
+              _id: expect.any(String),
+              title: expect.any(String)
+            }
+          }],
           __v: 0
         });
       });
