@@ -42,15 +42,15 @@ module.exports = async({ studiosToCreate = 10, actorsToCreate = 10, filmsToCreat
 
   const reviewer = await Reviewer.create([...Array(reviewerToCreate)].map(() => ({
     name: `${chance.prefix()} ${chance.name()}`,
-    company: `${chance.weekday()} ${chance.animal()} ${chance.word()}.com`,
+    company: `${chance.weekday()}${chance.animal()}.com`,
   })));
 
   const ratings = [1, 2, 3, 4, 5];
   const reviews = await Reviews.create([...Array(reviewsToCreate)].map(() => ({
     rating: chance.pickone(ratings),
-    reviewer: chance.pickone(reviewer._id),
-    review: chance.word(10),
-    film: chance.pickone(film._id)
+    reviewer: chance.pickone(reviewer)._id,
+    review: chance.sentence({ words: 5 }),  
+    film: chance.pickone(film)._id
   })));
 };
 
