@@ -91,7 +91,18 @@ describe('app routes', () => {
               name: expect.any(String)
             },
           }],
-          reviews: expect.any(Array),
+          reviews:expect.any(Array)
+        });
+        res.body.reviews.forEach(review => {
+          expect(review).toEqual({
+            _id: expect.any(String),
+            rating: expect.any(Number),
+            review: expect.any(String),
+            reviewer: {
+              _id: expect.any(String),
+              name: expect.any(String)
+            }
+          });
         });
       });
   });
