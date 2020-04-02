@@ -40,4 +40,13 @@ describe('app routes', () => {
         });
       });
   });
+
+  it('deletes a review by id', async() => {
+    const review = await getReview();
+    return request(app)
+      .delete(`/api/v1/review/${review._id}`)
+      .then(res => {
+        expect(res.body).toEqual(review);
+      });
+  });
 });
