@@ -25,5 +25,23 @@ describe('app routes', () => {
           __v: 0 
         });
       });
-  });  
+  });
+  
+  it('gets a review by id', async() => {
+    const review = await getReview({}, {
+      _id: true,
+      rating: true,
+      review: true,
+      film: true
+    });
+    // console.log(reviewer);
+    return request(app)
+      .get(`/api/v1/reviewer/${review._id}`)
+      .then(res => {
+        expect(res.body).toEqual({
+          ...review,
+          Review: expect.any(Object),
+        });
+      });
+  });
 });

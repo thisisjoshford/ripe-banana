@@ -39,7 +39,7 @@ const getters = files
       [`get${Model.modelName}s`]: (query, select) => Model.find(query).select(select).then(prepareAll)
     };
   }, {});
-// console.log(getters);
+console.log(getters);
 module.exports = getters;
 
 // *** normal

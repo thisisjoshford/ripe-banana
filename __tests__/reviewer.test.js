@@ -35,7 +35,7 @@ describe('app routes', () => {
       .then(res => {
         expect(res.body).toEqual({
           ...reviewer,
-          Reviews: expect.any(Object),
+          review: expect.any(Object),
         });
       });
   });
