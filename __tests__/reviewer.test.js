@@ -67,4 +67,25 @@ describe('app routes', () => {
       });
   });
 
+  it('deletes a reviewer if there are no reviews', async() => {
+    return request(app)
+      .post('/api/v1/reviewer')
+      .send({
+        name: 'Jay Sherman',
+        company: 'Coming Attractions'
+      })
+      .then(reviewer => {
+        return request(app)
+          .delete(`/api/v1/reviewer/${reviewer.body._id}`);
+      })
+      .then(res => {
+        expect(res.body).toEqual({
+          _id: expect.any(String),
+          name: 'Jay Sherman',
+          company: 'Coming Attractions',
+          __v: 0
+        });
+      });
+  });
+
 });
