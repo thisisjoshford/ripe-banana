@@ -54,4 +54,17 @@ describe('app routes', () => {
         });
       });
   });
+
+  it('throws error if trying to delete a reviewer w/ reviews', async() => {
+    const reviewer = await getReviewer();
+    return request(app)
+      .delete(`/api/v1/reviewer/${reviewer._id}`)
+      .then(res => {
+        expect(res.body).toEqual({
+          'message': 'Sorry... you must delete your reviews first.',
+          'status': 500,     
+        });
+      });
+  });
+
 });
