@@ -27,20 +27,16 @@ describe('app routes', () => {
       });
   });
   
-  it('gets a review by id', async() => {
-    const review = await getReview({}, {
-      _id: true,
-      rating: true,
-      review: true,
-      film: true
-    });
-    // console.log(reviewer);
+  it('gets 100 highest reviews', async() => {
     return request(app)
-      .get(`/api/v1/reviewer/${review._id}`)
+      .get('/api/v1/review')
       .then(res => {
-        expect(res.body).toEqual({
-          ...review,
-          Review: expect.any(Object),
+        expect(res.body).toHaveLength(100);
+        expect(res.body).toContainEqual({
+          _id: expect.any(String),
+          rating: expect.any(Number),
+          review: expect.any(String),
+          film: expect.any(Object),
         });
       });
   });
