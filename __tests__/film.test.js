@@ -69,8 +69,6 @@ describe('app routes', () => {
       _id: true,
       title: true,
       released: true,
-      studio: true,
-      cast: true,
       reviews: true
     });
     // console.log(film);
@@ -78,8 +76,22 @@ describe('app routes', () => {
       .get(`/api/v1/film/${film._id}`)
       .then(res => {
         expect(res.body).toEqual({
-          ...film,
-          __v: 0
+          _id: expect.any(String),
+          title: expect.any(String),
+          released: expect.any(Number),
+          studio: {
+            _id: expect.any(String),
+            name: expect.any(String)
+          },
+          cast: [{
+            _id: expect.any(String),
+            role: expect.any(String),
+            actor: {
+              _id: expect.any(String),
+              name: expect.any(String)
+            },
+          }],
+          reviews: expect.any(Array),
         });
       });
   });
